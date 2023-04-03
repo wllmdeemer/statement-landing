@@ -28,6 +28,6 @@
     "yargs": "^17.7.1"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1"
+    "@ungap/custom-elements": "^1.2.0"
   }
 }

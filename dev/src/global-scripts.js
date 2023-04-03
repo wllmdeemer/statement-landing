@@ -1,0 +1,1 @@
+require('@ungap/custom-elements');
