@@ -7,13 +7,15 @@
 	<div class="section-header-2__container">
 		<div class="section-header-2__row">
 			<div class="section-header-2__col section-header-2__col--logo">
-				{% if settings.logo != blank %}
-					{% render 'image',
-						image: settings.logo,
-						lazy: false,
-						width: 100
-					%}
-				{% endif %}
+				<a href="{{ routes.root_url }}" class="section-header-2__logo-link">
+					{% if settings.logo != blank %}
+						{% render 'image',
+							image: settings.logo,
+							lazy: false,
+							width: 100
+						%}
+					{% endif %}
+				</a>
 			</div>
 			<div class="section-header-2__col section-header-2__col--cart-button">
 				<button is="cart-button" class="cart-button">

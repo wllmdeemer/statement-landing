@@ -6,6 +6,7 @@
 		width: 100px;
 		flex-shrink: 0;
 		margin-right: 20px;
+		display: block;
 	}
 	
 	&__image {
@@ -19,6 +20,13 @@
 	
 	&__title {
 		margin: 0 0 5px;
+		color: inherit;
+		text-decoration: unset;
+		display: block;
+		
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 	
 	&__price {

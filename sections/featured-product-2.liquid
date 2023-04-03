@@ -27,17 +27,17 @@
 				{% if product != blank %}
 					<product-card class="product-card featured-product-2__product-card">
 						{% if product.featured_image != blank %}
-							<div class="product-card__image-wrap">
+							<a href="{{ product.url }}" class="product-card__image-wrap">
 								{% render 'image',
 									image: product.featured_image,
 									width: 240
 								%}
-							</div>
+							</a>
 						{% endif %}
 						<div class="product-card__content-wrap">
-							<h3 class="product-card__title">
+							<a href="{{ product.url }}" class="product-card__title">
 								{{ product.title }}
-							</h3>
+							</a>
 							<p class="product-card__price">
 								{{ product.selected_or_first_available_variant.price | money }}
 							</p>

@@ -25,15 +25,15 @@
 					{% for line_item in cart.items %}
 						<div class="cart-drawer-2__item-wrap">
 							<cart-item class="cart-item" data-item-key="{{ line_item.key }}">
-								<div class="cart-item__image-col">
+								<a href="{{ line_item.url }}" class="cart-item__image-col">
 									{% render 'image',
 										image: line_item.image,
 										width: 100,
 										class: 'cart-item__image'
 									%}
-								</div>
+								</a>
 								<div class="cart-item__content-col">
-									<h3 class="cart-item__title">{{ line_item.title }}</h3>
+									<a href="{{ line_item.url }}" class="cart-item__title">{{ line_item.title }}</a>
 									<p class="cart-item__price">{{ line_item.price | money }}</p>
 									<button class="cart-item__remove-button" data-remove-url="{{ line_item.url_to_remove }}" data-remove-item>{{ 'sections.cart.remove' | t }}</button>
 								</div>
