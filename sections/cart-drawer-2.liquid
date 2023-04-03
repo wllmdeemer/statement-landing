@@ -1,0 +1,70 @@
+{{ 'section-cart-drawer-2.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-item.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart-drawer-2.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-item.js' | asset_url }}" defer="defer"></script>
+
+<cart-drawer-2 class="cart-drawer-2" data-section-id="{{ section.id }}">
+	<span class="cart-drawer-2__backdrop" data-close-drawer></span>
+	<div class="cart-drawer-2__inner" data-render-element>
+		<div class="cart-drawer-2__header">
+			<h2 class="cart-drawer-2__title">
+				{{ 'sections.cart.title' | t }}
+			</h2>
+			<button class="cart-drawer-2__close-button" data-close-drawer>
+				{% render 'icon-close-2' %}
+			</button>
+		</div>
+		<div class="cart-drawer-2__content">
+			{% if cart.empty? %}
+				<p class="cart-drawer-2__empty-text">
+					{{ 'sections.cart.empty' | t }}
+				</p>
+			{% else %}
+				<div class="cart-drawer-2__items">
+					{% for line_item in cart.items %}
+						<div class="cart-drawer-2__item-wrap">
+							<cart-item class="cart-item" data-item-key="{{ line_item.key }}">
+								<div class="cart-item__image-col">
+									{% render 'image',
+										image: line_item.image,
+										width: 100,
+										class: 'cart-item__image'
+									%}
+								</div>
+								<div class="cart-item__content-col">
+									<h3 class="cart-item__title">{{ line_item.title }}</h3>
+									<p class="cart-item__price">{{ line_item.price | money }}</p>
+									<button class="cart-item__remove-button" data-remove-url="{{ line_item.url_to_remove }}" data-remove-item>{{ 'sections.cart.remove' | t }}</button>
+								</div>
+							</cart-item>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}
+		</div>
+		<div class="cart-drawer-2__footer">
+			{% unless cart.empty? %}
+				<h2 class="cart-drawer-2__subtotal">
+					{% assign subtotal_price = cart.items_subtotal_price | money %}
+					{{ 'sections.cart.subtotal_price' | t: price: subtotal_price }}
+				</h2>
+				{% form 'cart', cart, class: 'cart-drawer-2__checkout-form' %}
+					<button type="submit" name="checkout" class="button-2">
+						<span class="button-2__text">{{ 'sections.cart.checkout_proceed' | t }}</span>
+					</button>
+				{% endform %}
+			{% endunless %}
+			<button class="cart-drawer-2__continue-button" data-close-drawer>
+				{{ 'sections.cart.continue_shopping' | t }}
+			</button>
+		</div>
+	</div>
+</cart-drawer-2>
+
+{% schema %}
+{
+	"name": "Cart drawer 2",
+	"settings": []
+}
+{% endschema %}
