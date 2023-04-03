@@ -25,3 +25,28 @@
 		object-position: center;
 	}
 }
+
+.button-2 {
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background-color: #FF5D02;
+	border-radius: 30px;
+	padding: 15px 30px;
+	transition: .3s ease;
+	
+	&__text {
+		text-transform: uppercase;
+		color: #fff;
+		letter-spacing: 0.1em;
+	}
+	
+	&:hover {
+		background-color: #c04703;
+	}
+	
+	&[disabled] {
+		filter: grayscale(1);
+		pointer-events: none;
+	}
+}

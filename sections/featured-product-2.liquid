@@ -1,0 +1,86 @@
+{{ 'section-featured-product-2.css' | asset_url | stylesheet_tag }}
+{{ 'component-product-card.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'product-card.js' | asset_url }}" defer="defer"></script>
+
+<div class="featured-product-2">
+	<div class="featured-product-2__col featured-product-2__col--text">
+		<div class="featured-product-2__col-container">
+			<div class="featured-product-2__col-inner">
+				{% if section.settings.title != blank %}
+					<h1 class="featured-product-2__title">
+						{{ section.settings.title }}
+					</h1>
+				{% endif %}
+				{% if section.settings.text != blank %}
+					<div class="featured-product-2__text">
+						{{ section.settings.text }}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="featured-product-2__col featured-product-2__col--product">
+		<div class="featured-product-2__col-container">
+			<div class="featured-product-2__col-inner">
+				{% assign product = section.settings.product %}
+				{% if product != blank %}
+					<product-card class="product-card featured-product-2__product-card">
+						{% if product.featured_image != blank %}
+							<div class="product-card__image-wrap">
+								{% render 'image',
+									image: product.featured_image,
+									width: 240
+								%}
+							</div>
+						{% endif %}
+						<div class="product-card__content-wrap">
+							<h3 class="product-card__title">
+								{{ product.title }}
+							</h3>
+							<p class="product-card__price">
+								{{ product.selected_or_first_available_variant.price | money }}
+							</p>
+							{% form 'product', product, class: 'product-card__form' %}
+								<input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+								<button type="submit" class="product-card__button button-2">
+									<span class="button-2__text">{{ 'products.product.add_to_cart' | t }}</span>
+								</button>
+							{% endform %}
+						</div>
+					</product-card>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "Featured product 2",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"default": "Ornae Vulputate Elit"
+		},
+		{
+			"type": "richtext",
+			"id": "text",
+			"label": "Text",
+			"default": "<p>Nullam quis risus eget urna mollis ornare vel eu leo.</p>"
+		},
+		{
+			"type": "product",
+			"id": "product",
+			"label": "Product"
+		}
+	],
+	"presets": [
+		{
+			"name": "Featured product 2"
+		}
+	]
+}
+{% endschema %}

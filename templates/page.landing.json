@@ -1,7 +1,12 @@
 {
   "sections": {
     "featured-product": {
-      "type": "featured-product-2"
+      "type": "featured-product-2",
+      "settings": {
+        "title": "Ornae Vulputate Elit",
+        "text": "<p>Nullam quis risus eget urna mollis ornare vel eu leo. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Aenean lacinia bibendum nulla sed consectetur. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.<\/p>",
+        "product": "natures-menu-dog-food-can-chicken"
+      }
     }
   },
   "order": [
