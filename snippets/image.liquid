@@ -1,0 +1,42 @@
+{% comment %}
+Accepts:
+  image: <object> | required
+  width: <number>
+  class: <string>
+  alt: <string>
+  lazy: <boolean>
+  preload: <boolean>
+  style: <string>
+  sizes: <string>
+{% endcomment %}
+
+{% assign img_class = class %}
+{% assign img_width = width | default: image.width | at_most: image.width %}
+{% capture default_sizes -%}
+	(max-width: {{ img_width }}px) 100vw, {{ img_width }}px
+{%- endcapture %}
+{% assign img_sizes = sizes | default: default_sizes %}
+{% liquid
+	capture img_loading
+		if lazy == false
+			echo 'eager'
+		else
+			echo 'lazy'
+		endif
+	endcapture
+%}
+{% assign img_preload = preload | default: false %}
+{% assign img_alt = alt | default: image.alt %}
+{% assign img_style = style %}
+{% liquid
+	capture img_widths
+		echo '320, 375, 425, 576, 768, 992, 1024, 1280, 1440, 1680, 1920, 2560, 3440, ' | append: image.width
+		if width != blank and width != image.width
+			echo width | prepend: ', '
+		endif
+	endcapture
+%}
+
+<div class="image {{ img_class }}" style="--aspect-ratio-percentage: {{ 1 | divided_by: image.aspect_ratio | times: 100 | round: 2 }}%">
+	{{ image | image_url: width: image.width | image_tag: widths: img_widths, sizes: img_sizes, width: img_width, alt: img_alt, loading: img_loading, preload: img_preload, style: img_style }}
+</div>

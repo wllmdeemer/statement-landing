@@ -1,0 +1,37 @@
+{{ 'section-header-2.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-button.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart-button.js' | asset_url }}" defer="defer"></script>
+
+<div class="section-header-2">
+	<div class="section-header-2__container">
+		<div class="section-header-2__row">
+			<div class="section-header-2__col section-header-2__col--logo">
+				{% if settings.logo != blank %}
+					{% render 'image',
+						image: settings.logo,
+						lazy: false,
+						width: 100
+					%}
+				{% endif %}
+			</div>
+			<div class="section-header-2__col section-header-2__col--cart-button">
+				<button is="cart-button" class="cart-button">
+					<span class="cart-button__text" data-cart-item-count>
+						{{ cart.item_count }}
+					</span>
+					<span class="cart-button__icon">
+						{% render 'icon-cart-2' %}
+					</span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "Header",
+	"settings": []
+}
+{% endschema %}

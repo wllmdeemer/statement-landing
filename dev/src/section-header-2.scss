@@ -1,0 +1,38 @@
+.section-header-2 {
+	width: 100%;
+	padding: 35px 0;
+	@media (min-width: 768px) {
+		position: absolute;
+		z-index: 2;
+		width: 100%;
+		top: 0;
+		left: 0;
+		padding: 50px 0;
+	}
+	
+	&__container {
+		display: block;
+		width: 100%;
+		max-width: 1400px;
+		padding: 0 30px;
+		margin: 0 auto;
+	}
+	
+	&__row {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	&__col {
+	
+		&--cart-button {
+			flex-shrink: 0;
+		}
+		
+		&--logo {
+			width: 100px;
+		}
+	}
+}

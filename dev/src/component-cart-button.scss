@@ -1,0 +1,28 @@
+.cart-button {
+	border: none;
+	background-color: unset;
+	outline: none;
+	cursor: pointer;
+	padding: 0;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	&__text {
+		position: absolute;
+		z-index: 2;
+		transform: translateY(3px);
+	}
+	
+	&__icon {
+		position: relative;
+		z-index: 1;
+		
+		svg {
+			display: block;
+			width: 26px;
+			height: 32px;
+		}
+	}
+}
