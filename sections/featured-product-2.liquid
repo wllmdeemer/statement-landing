@@ -45,6 +45,9 @@
 								<input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 								<button type="submit" class="product-card__button button-2">
 									<span class="button-2__text">{{ 'products.product.add_to_cart' | t }}</span>
+									<span class="button-2__loading">
+										{% render 'icon-loading' %}
+									</span>
 								</button>
 							{% endform %}
 						</div>

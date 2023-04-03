@@ -16,6 +16,7 @@ if (!customElements.get('product-card')) {
 
 		onSubmitHandler() {
 			this.submitButton.setAttribute('disabled', 'disabled');
+			this.submitButton.classList.add('is-loading');
 
 			fetch(`${window.routes.cart_add_url}`, {
 				method: 'POST',
@@ -28,7 +29,9 @@ if (!customElements.get('product-card')) {
 				.then((response) => response.json())
 				.then((response) => {
 					if (response.status) return;
-					publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
+					setTimeout(() => {
+						publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form'});
+					}, 1000);
 				})
 				.catch((e) => {
 					console.error(e);
@@ -36,7 +39,8 @@ if (!customElements.get('product-card')) {
 				.finally(() => {
 					setTimeout(() => {
 						this.submitButton.removeAttribute('disabled');
-					}, 500);
+						this.submitButton.classList.remove('is-loading');
+					}, 1000);
 				});
 		}
 	})
